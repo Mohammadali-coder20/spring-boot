@@ -21,12 +21,23 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Transactional(readOnly = true)
     public List<Employee> findALl(Pageable pageable) {
         Page<Employee> all = employeeRepository.findAll(pageable);
-        return all.stream().collect(Collectors.toList());
+//        return all.stream().collect(Collectors.toList());
+        return all.toList();
     }
 
     @Override
     @Transactional
-    public void sava(Employee employee) {
+    public void save(Employee employee) {
         employeeRepository.save(employee);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Employee findByID(Long id) {
+        return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("there is no such a Employee"));
     }
 }

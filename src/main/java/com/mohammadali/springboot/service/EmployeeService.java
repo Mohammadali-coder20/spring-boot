@@ -8,5 +8,9 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> findALl(Pageable pageable);
 
-    void sava(Employee employee);
+    void save(Employee employee);
+
+    void deleteById(Long id);
+
+    Employee findByID(Long id);
 }
