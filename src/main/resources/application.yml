@@ -1,0 +1,92 @@
+spring:
+  datasource:
+    username: root
+    password: Mohammad1322
+    url: jdbc:mysql://localhost:3306/spring_boot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  error:
+    whitelabel:
+      enabled: false
+
+
+management:
+  endpoint:
+    health:
+      group:
+        cusotm:
+          showComponents: always
+  endpoints:
+    web:
+      exposure:
+        include: all
+
+
+info:
+  app:
+    name: spring-boot
+    author: mohammadali
+  company:
+     location: Tehran
+
+
+
+--- #prod
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    show-sql: false
+
+
+logging:
+  level:
+    root: info
+
+user:
+  name:
+    custom: x
+
+--- #dev
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    root: debug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

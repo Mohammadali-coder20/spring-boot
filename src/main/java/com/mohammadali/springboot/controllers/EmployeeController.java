@@ -3,6 +3,9 @@ package com.mohammadali.springboot.controllers;
 import com.mohammadali.springboot.entity.Employee;
 import com.mohammadali.springboot.service.EmployeeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,9 +19,13 @@ import java.util.function.Consumer;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
+//@AllArgsConstructor
 public class EmployeeController {
 
+//    @Value("${user.name.customer}")
+//    private String name;
+
+    @Autowired
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
@@ -37,7 +44,7 @@ public class EmployeeController {
         return  employee;
     }
 
-    @PutMapping("employees")
+    @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee){
         employeeService.save(employee);
         return employee;
